@@ -5,7 +5,7 @@ namespace AppointmentService
 {
     public class AppointmentSchedule
     {
-        public string Schedule (bool isValid)
+        public static string Schedule (bool isValid)
         {
             StringBuilder stringBuilder = new StringBuilder("Scheduling appointment...\n");
             
@@ -14,9 +14,9 @@ namespace AppointmentService
                 stringBuilder.Append("Appointment scheduled");
             }
             else {
+                stringBuilder.Append("Unable to schedule appointment");
 
             }
-
             return stringBuilder.ToString();
         }
     }
