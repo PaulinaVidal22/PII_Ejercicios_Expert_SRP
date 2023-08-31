@@ -1,20 +1,47 @@
 ﻿using System;
-using AppointmentService;
+using System.Text;
 
-namespace Program
+namespace AppointmentService
 {
     class Program
     {
         static void Main(string[] args)
         {
-            
-            bool validation1 = AppointmentDataValidation.ValidateData("Steven Jhonson", "986782342", "5555-555-555", "Wall Street", "Armand");
-            string appointmentResult = AppointmentSchedule.Schedule(validation1);
-            Console.WriteLine(appointmentResult);
+            string name = "Steven Johnson";
+            string id = "986782342";
+            string phoneNumber = "5555-555-555";
+            DateTime date = DateTime.Now;
+            string appointmentPlace = "Wall Street";
+            string doctorName = "Armand";
 
-            bool validation2 = AppointmentDataValidation.ValidateData("Ralf Manson", "", "5555-555-555", "Queen Street", "");
-            string appointmentResult2 = AppointmentSchedule.Schedule(validation2);
-            Console.WriteLine(appointmentResult2);
+            bool isValid = AppointmentValidation.ValidateData(name, id, phoneNumber, date, appointmentPlace, doctorName);
+
+            StringBuilder stringBuilder = new StringBuilder();
+            string result = AppointmentScheduleMessage.ScheduleAppointment(isValid, stringBuilder, name, id, phoneNumber, date, appointmentPlace, doctorName);
+
+            Console.WriteLine(result);
+            
+            string name2 = "Ralf Manson";
+            string id2 = "";
+            string phoneNumber2 = "5555-555-555";
+            DateTime date2 = DateTime.Now;
+            string appointmentPlace2 = "Queen Street";
+            string doctorName2 = "";
+
+            bool isValid2 = AppointmentValidation.ValidateData(name, id2, phoneNumber2, date2, appointmentPlace2, doctorName2);
+
+            StringBuilder stringBuilder2 = new StringBuilder();
+            string result2 = AppointmentScheduleMessage.ScheduleAppointment(isValid2, stringBuilder2, name2, id2, phoneNumber2, date2, appointmentPlace2, doctorName2);
+
+            Console.WriteLine(result2);
+
+            
         }
     }
 }
+            
+            
+
+
+
+
