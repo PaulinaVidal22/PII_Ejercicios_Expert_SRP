@@ -1,49 +1,45 @@
-using System;
 using System.Text;
-
 
 namespace AppointmentService
 {
-    public class AppointmentValidation
+    public class AppointmentValidation // Service Provider
     {
-        public static (bool isValid, string errorMessages) ValidateData(string name, string id, string phoneNumber,DateTime date, string appointmentPlace, string doctorName)
+        public static (bool isValid, string errorMessages) ValidateData(Patient patient, AppointmentData appointment, DoctorData doctor)
         {
             StringBuilder errorMessages = new StringBuilder();
-            Boolean isValid = true;
+            bool isValid = true;
 
-            if (string.IsNullOrEmpty(name))
+            if (string.IsNullOrEmpty(patient.Name))
             {
-                errorMessages.Append("Unable to schedule appointment, 'name' is required\n");
+                errorMessages.Append("Patient name is required.\n");
                 isValid = false;
             }
 
-            if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(patient.ID))
             {
-                errorMessages.Append("Unable to schedule appointment, 'id' is required\n");
+                errorMessages.Append("Patient ID is required.\n");
                 isValid = false;
             }
 
-            if (string.IsNullOrEmpty(phoneNumber))
+            if (string.IsNullOrEmpty(patient.PhoneNumber))
             {
-                errorMessages.Append("Unable to schedule appointment, 'phone number' is required\n");
+                errorMessages.Append("Patient phone number is required.\n");
                 isValid = false;
             }
 
-            if (string.IsNullOrEmpty(appointmentPlace))
+            if (string.IsNullOrEmpty(appointment.AppointmentPlace))
             {
-                errorMessages.Append("Unable to schedule appointment, 'appointment place' is required\n");
+                errorMessages.Append("Appointment place is required.\n");
                 isValid = false;
             }
 
-
-            if (string.IsNullOrEmpty(doctorName))
+            if (string.IsNullOrEmpty(doctor.DoctorName))
             {
-                errorMessages.Append("Unable to schedule appointment, 'doctor name' is required\n");
+                errorMessages.Append("Doctor name is required.\n");
                 isValid = false;
             }
+
             return (isValid, errorMessages.ToString());
         }
-
     }
 }
-        

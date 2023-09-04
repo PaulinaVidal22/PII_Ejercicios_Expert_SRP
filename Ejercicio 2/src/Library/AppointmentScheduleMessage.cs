@@ -3,22 +3,24 @@ using System.Text;
 
 namespace AppointmentService
 {
-    public class AppointmentScheduleMessage
+    public class AppointmentScheduleMessage //Service Provider
     {
-        public static string ScheduleAppointment (bool isValid, string errorMessages, string name, string id, string phoneNumber, DateTime date, string appointmentPlace, string doctorName)
+        public static string ScheduleAppointment(bool isValid, string errorMessages, Patient patient, AppointmentData appointment, DoctorData doctor)
         {
             StringBuilder stringBuilder = new StringBuilder("Scheduling appointment...\n");
 
             if (isValid)
             {
-                Appointment appointment = new Appointment(name, id, phoneNumber, date, appointmentPlace, doctorName);
+                Appointment appointmentInstance = new Appointment(patient, appointment, doctor);
 
-                stringBuilder.Append($"Appointment scheduled for {date.ToShortDateString()} at {appointmentPlace} with Dr. {doctorName}");
+                stringBuilder.Append($"Appointment scheduled for {appointmentInstance.AppointmentInfo.Date.ToShortDateString()} at {appointmentInstance.AppointmentInfo.AppointmentPlace} with Dr. {appointmentInstance.DoctorInfo.DoctorName}");
 
-            } else{
+            }
+            else
+            {
                 stringBuilder.Append("Unable to schedule appointment due to the following errors:\n");
                 stringBuilder.Append(errorMessages);
-                    }
+            }
             return stringBuilder.ToString();
         }
     }

@@ -1,24 +1,17 @@
-using System;
 
 namespace AppointmentService
 {
-    public class Appointment
+    public class Appointment // Coordinator
     {
-        public string Name { get; }
-        public string ID { get; }
-        public string PhoneNumber { get; }
-        public DateTime Date { get; }
-        public string AppointmentPlace { get; }
-        public string DoctorName { get; }
+        public Patient PatientInfo { get; }
+        public AppointmentData AppointmentInfo { get; }
+        public DoctorData DoctorInfo { get; }
 
-        public Appointment(string name, string id, string phoneNumber, DateTime date, string appointmentPlace, string doctorName)
+        public Appointment(Patient patient, AppointmentData appointment, DoctorData doctor)
         {
-            Name = name;
-            ID = id;
-            PhoneNumber = phoneNumber;
-            Date = date;
-            AppointmentPlace = appointmentPlace;
-            DoctorName = doctorName;
+            this.PatientInfo = patient;
+            this.AppointmentInfo = appointment;
+            this.DoctorInfo = doctor;
         }
     }
 }
